@@ -10,29 +10,47 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     
-    let data = [
+    let data: [[String: AnyObject]] = [
         [
-            [
-                "userid":"Amy"
-            ],
-            [
-                "userimg":"img01.png"
-            ],
-            [
-                "":""
-            ],
-            [
-                "likename":"zoo,fywi,hhei"
-            ],
-            [
-                "fanid":"eee",
-                "fanword":"eqoqwoi"
-            ],
-            [
-                "fanid":"wyqy",
-                "fanword":"wuququ"
+            "type": "post",
+            "id": 123,
+            "content": [
+                "userid":"Amy",
+                "userimg":"img01.png",
+                "likename":"zoo,fywi,hhei",
+                "comment": [
+                    [
+                        "fanid":"eee",
+                        "fanword":"eqoqwoi"
+                    ],
+                    [
+                        "fanid":"wyqy",
+                        "fanword":"wuququ"
+                    ]
+                ]
             ]
-        
+        ],
+        [
+            "type": "ad"
+        ],
+        [
+            "type": "post",
+            "id": 123,
+            "content": [
+                "userid":"Amy",
+                "userimg":"img01.png",
+                "likename":"zoo,fywi,hhei",
+                "comment": [
+                    [
+                        "fanid":"eee",
+                        "fanword":"eqoqwoi"
+                    ],
+                    [
+                        "fanid":"wyqy",
+                        "fanword":"wuququ"
+                    ]
+                ]
+            ]
         ]
     ]
 
@@ -60,7 +78,16 @@ class HomeTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.data[section].count
+        if (data[section]["type"] as? String) == "ad" {
+            
+            return 1
+            
+        }
+        
+        let content = self.data[section]["content"] as! [String: AnyObject]
+        let comment = content["comment"] as! [[String: String]]
+        return 4 + comment.count
+        
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -81,15 +108,27 @@ class HomeTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        
+        
         var cell = UITableViewCell()
         
+        if (data[indexPath.section]["type"] as? String) == "ad" {
+        
+            cell.textLabel?.text = "廣告"
+            
+            return cell
+            
+        }
+        else {
+            
+            let content = self.data[indexPath.section]["content"] as! [String: AnyObject]
         switch indexPath.row {
         
         case 0:
         
             let user_cell = tableView.dequeueReusableCellWithIdentifier("usercell", forIndexPath: indexPath) as! UserTableViewCell
           
-            user_cell.userId.text = data[indexPath.section][indexPath.row]["userid"]
+            user_cell.userId.text = content["userid"] as? String
             
             cell = user_cell
         
@@ -98,7 +137,7 @@ class HomeTableViewController: UITableViewController {
             
             let img_cell = tableView.dequeueReusableCellWithIdentifier("imgcell", forIndexPath: indexPath) as! ImgTableViewCell
             
-            img_cell.sharePic.image = UIImage(named: data[indexPath.section][indexPath.row]["userimg"]!)
+            img_cell.sharePic.image = UIImage(named: content["userimg"] as! String)
             
             cell = img_cell
             
@@ -110,6 +149,9 @@ class HomeTableViewController: UITableViewController {
             btn_cell.btn_like.setTitle("like", forState: .Normal)
             btn_cell.btn_comment.setTitle("comment", forState: .Normal)
             
+            btn_cell.btn_comment.addTarget(self, action: Selector("goComment:"), forControlEvents: .TouchUpInside)
+            
+            btn_cell.btn_comment.tag = data[indexPath.section]["id"] as! Int
             
             cell = btn_cell
         
@@ -118,28 +160,38 @@ class HomeTableViewController: UITableViewController {
             
             let like_cell = tableView.dequeueReusableCellWithIdentifier("likecell", forIndexPath: indexPath) as! LikeTableViewCell
             
-            like_cell.like_people.text = data[indexPath.section][indexPath.row]["likename"]
+            like_cell.like_people.text = content["likename"] as? String
             
             cell = like_cell
         
             
         default:
             
+            let comment = content["comment"] as! [[String: String]]
+            
             let comment_cell = tableView.dequeueReusableCellWithIdentifier("commentcell", forIndexPath: indexPath) as! CommentTableViewCell
             
-            comment_cell.com_user.setTitle(data[indexPath.section][indexPath.row]["fanid"], forState: .Normal)
-            comment_cell.com_word.text = data[indexPath.section][indexPath.row]["fanword"]
+            let index = indexPath.row - 4
+            
+            comment_cell.com_user.setTitle(comment[index]["fanid"], forState: .Normal)
+            comment_cell.com_word.text = comment[index]["fanword"]
             
             
             cell = comment_cell
         
         
         }
+        }
 
         return cell
     }
     
-
+    
+    func goComment(trigger: UIButton){
+        
+        performSegueWithIdentifier("goComment", sender: trigger.tag)
+        
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -175,14 +227,33 @@ class HomeTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        let ROUTE = segue.identifier ?? ""
+        
+        switch ROUTE {
+            
+            
+        case "goComment":
+            
+            let vc = segue.destinationViewController as! CommentViewController
+            vc.id = sender as! Int
+            
+            
+        default:
+            
+            break
+            
+        }
+        
+        
+        
+        
     }
-    */
+    
 
 }

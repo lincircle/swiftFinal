@@ -156,10 +156,39 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="instagram" id="tCc-op-EkC"/>
+                    <connections>
+                        <segue destination="0TG-aX-rol" kind="modal" identifier="goComment" id="TnY-7y-ox5"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6WZ-Q3-p9i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="461" y="-2"/>
+        </scene>
+        <!--Comment View Controller-->
+        <scene sceneID="ygh-UC-qYU">
+            <objects>
+                <viewController id="0TG-aX-rol" customClass="CommentViewController" customModule="swiftFinal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="N3A-Ql-GKS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mMh-Za-As9">
+                                <rect key="frame" x="114" y="105" width="99" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="com_section" destination="mMh-Za-As9" id="I0M-6t-tHO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N3d-Ek-6kx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="879" y="-2"/>
         </scene>
         <!--Main-->
         <scene sceneID="FBr-an-EBs">
