@@ -89,7 +89,6 @@ class HomeTableViewController: UITableViewController {
         
             let user_cell = tableView.dequeueReusableCellWithIdentifier("usercell", forIndexPath: indexPath) as! UserTableViewCell
           
-            user_cell.userPic.image = UIImage(named: data[indexPath.section][indexPath.row]["userimg"]!)
             user_cell.userId.text = data[indexPath.section][indexPath.row]["userid"]
             
             cell = user_cell
