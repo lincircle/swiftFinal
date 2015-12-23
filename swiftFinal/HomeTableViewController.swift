@@ -72,15 +72,18 @@ class HomeTableViewController: UITableViewController {
         
         var cell = UITableViewCell()
         
-        if(indexPath.row == 0){
+        switch indexPath.row {
+        
+        case 0:
         
             let user_cell = tableView.dequeueReusableCellWithIdentifier("usercell", forIndexPath: indexPath) as! UserTableViewCell
           
             user_cell.userId.text = data[indexPath.section][indexPath.row]["userid"]
             
             cell = user_cell
-        }
-        if(indexPath.row == 1){
+        
+        
+        case 1:
             
             let img_cell = tableView.dequeueReusableCellWithIdentifier("imgcell", forIndexPath: indexPath) as! ImgTableViewCell
             
@@ -88,8 +91,8 @@ class HomeTableViewController: UITableViewController {
             
             cell = img_cell
             
-        }
-        if(indexPath.row == 2){
+        
+        case 2:
             
             let btn_cell = tableView.dequeueReusableCellWithIdentifier("btncell", forIndexPath: indexPath) as! BtnTableViewCell
             
@@ -98,16 +101,18 @@ class HomeTableViewController: UITableViewController {
             
             
             cell = btn_cell
-        }
-        if(indexPath.row == 3){
+        
+            
+        case 3:
             
             let like_cell = tableView.dequeueReusableCellWithIdentifier("likecell", forIndexPath: indexPath) as! LikeTableViewCell
             
             like_cell.like_people.text = data[indexPath.section][indexPath.row]["likename"]
             
             cell = like_cell
-        }
-        if(4 <= indexPath.row){
+        
+            
+        default:
             
             let comment_cell = tableView.dequeueReusableCellWithIdentifier("commentcell", forIndexPath: indexPath) as! CommentTableViewCell
             
@@ -116,8 +121,9 @@ class HomeTableViewController: UITableViewController {
             
             
             cell = comment_cell
-        }
         
+        
+        }
 
         return cell
     }
