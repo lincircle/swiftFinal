@@ -63,10 +63,21 @@ class HomeTableViewController: UITableViewController {
         return self.data[section].count
     }
 
-    /*override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        switch indexPath.row {
+        
+        case 1:
+            
+            return 200.0
+            
+        default:
+            
+            return 70.0
+        }
         
         
-    }*/
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -78,6 +89,7 @@ class HomeTableViewController: UITableViewController {
         
             let user_cell = tableView.dequeueReusableCellWithIdentifier("usercell", forIndexPath: indexPath) as! UserTableViewCell
           
+            user_cell.userPic.image = UIImage(named: data[indexPath.section][indexPath.row]["userimg"]!)
             user_cell.userId.text = data[indexPath.section][indexPath.row]["userid"]
             
             cell = user_cell

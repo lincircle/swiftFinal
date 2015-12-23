@@ -29,8 +29,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="imgcell" rowHeight="202" id="N3C-Zz-0Dp" customClass="ImgTableViewCell" customModule="swiftFinal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="202"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N3C-Zz-0Dp" id="Qhp-f4-ydM">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="201"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="raq-Vo-pIl">
+                                            <rect key="frame" x="8" y="8" width="304" height="185"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="sharePic" destination="raq-Vo-pIl" id="h6l-j8-jWt"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="likecell" rowHeight="71" id="5jm-6E-IDZ" customClass="LikeTableViewCell" customModule="swiftFinal" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="71"/>
+                                <rect key="frame" x="0.0" y="294" width="320" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5jm-6E-IDZ" id="atB-Gt-ntm">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
@@ -50,7 +67,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentcell" rowHeight="76" id="gpi-ey-0T9" customClass="CommentTableViewCell" customModule="swiftFinal" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="163" width="320" height="76"/>
+                                <rect key="frame" x="0.0" y="365" width="320" height="76"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gpi-ey-0T9" id="1nq-cL-cG0">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
@@ -76,7 +93,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="usercell" rowHeight="100" id="v3h-BB-9jS" customClass="UserTableViewCell" customModule="swiftFinal" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="239" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="441" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="v3h-BB-9jS" id="Sua-bB-oDG">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
@@ -106,23 +123,6 @@
                                     <outlet property="offset" destination="P0H-tR-mbM" id="al7-36-ONE"/>
                                     <outlet property="userId" destination="Ldv-hL-qqV" id="Cab-bW-XFK"/>
                                     <outlet property="userPic" destination="ALO-PT-Y3g" id="eXH-wr-Cpk"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="imgcell" rowHeight="202" id="N3C-Zz-0Dp" customClass="ImgTableViewCell" customModule="swiftFinal" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="339" width="320" height="202"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N3C-Zz-0Dp" id="Qhp-f4-ydM">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="201"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="raq-Vo-pIl">
-                                            <rect key="frame" x="8" y="8" width="304" height="185"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="sharePic" destination="raq-Vo-pIl" id="h6l-j8-jWt"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="btncell" rowHeight="45" id="EuJ-Xo-qGq" customClass="BtnTableViewCell" customModule="swiftFinal" customModuleProvider="target">
