@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		573EB5DD1C44F81D008DD73D /* ig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573EB5DC1C44F81D008DD73D /* ig.swift */; };
 		57766FAF1C2A42D400DE8A5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57766FAE1C2A42D400DE8A5A /* AppDelegate.swift */; };
 		57766FB41C2A42D400DE8A5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57766FB21C2A42D400DE8A5A /* Main.storyboard */; };
 		57766FB61C2A42D400DE8A5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57766FB51C2A42D400DE8A5A /* Assets.xcassets */; };
@@ -20,6 +19,7 @@
 		57766FE51C2A6F3F00DE8A5A /* LikeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57766FE41C2A6F3F00DE8A5A /* LikeTableViewCell.swift */; };
 		57766FE71C2A6FD600DE8A5A /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57766FE61C2A6FD600DE8A5A /* CommentTableViewCell.swift */; };
 		57766FE91C2A754400DE8A5A /* ImgTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57766FE81C2A754400DE8A5A /* ImgTableViewCell.swift */; };
+		57A6389B1C45035D000C5B26 /* Loan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A6389A1C45035D000C5B26 /* Loan.swift */; };
 		57A7412B1C2A88A900A6FB3A /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A7412A1C2A88A900A6FB3A /* CommentViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +41,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		573EB5DC1C44F81D008DD73D /* ig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ig.swift; sourceTree = "<group>"; };
 		57766FAB1C2A42D400DE8A5A /* swiftFinal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swiftFinal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57766FAE1C2A42D400DE8A5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57766FB31C2A42D400DE8A5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +59,7 @@
 		57766FE41C2A6F3F00DE8A5A /* LikeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeTableViewCell.swift; sourceTree = "<group>"; };
 		57766FE61C2A6FD600DE8A5A /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		57766FE81C2A754400DE8A5A /* ImgTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgTableViewCell.swift; sourceTree = "<group>"; };
+		57A6389A1C45035D000C5B26 /* Loan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loan.swift; sourceTree = "<group>"; };
 		57A7412A1C2A88A900A6FB3A /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,7 +123,7 @@
 				57766FE61C2A6FD600DE8A5A /* CommentTableViewCell.swift */,
 				57766FE81C2A754400DE8A5A /* ImgTableViewCell.swift */,
 				57A7412A1C2A88A900A6FB3A /* CommentViewController.swift */,
-				573EB5DC1C44F81D008DD73D /* ig.swift */,
+				57A6389A1C45035D000C5B26 /* Loan.swift */,
 			);
 			path = swiftFinal;
 			sourceTree = "<group>";
@@ -284,7 +284,7 @@
 				57766FE51C2A6F3F00DE8A5A /* LikeTableViewCell.swift in Sources */,
 				57766FE31C2A6E7700DE8A5A /* BtnTableViewCell.swift in Sources */,
 				57766FDD1C2A50F200DE8A5A /* HomeTableViewController.swift in Sources */,
-				573EB5DD1C44F81D008DD73D /* ig.swift in Sources */,
+				57A6389B1C45035D000C5B26 /* Loan.swift in Sources */,
 				57766FE71C2A6FD600DE8A5A /* CommentTableViewCell.swift in Sources */,
 				57766FDF1C2A521100DE8A5A /* UserTableViewCell.swift in Sources */,
 				57766FAF1C2A42D400DE8A5A /* AppDelegate.swift in Sources */,

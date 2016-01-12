@@ -56,7 +56,7 @@ class HomeTableViewController: UITableViewController {
     
     let  url_to_request = "https://api.instagram.com/v1/media/popular?client_id=642176ece1e7445e99244cec26f4de1f";
     
-    var data_array:[[String:AnyObject]] = []
+    var loans = [Loan]()
     
     func dataRequest(){
         
@@ -70,18 +70,64 @@ class HomeTableViewController: UITableViewController {
                     return
                 }
                 
-                do{
-                    let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String:AnyObject]
-                    print(jsonResult)
-                }catch{
-                    print("json:error\(error)")
+                let json_objs = self.parseJsonData(data!)
+
+                for obj in json_objs {
+                
+                    obj.description()
+                    
                 }
+                
             }
         )
         
         task.resume()
     }
     
+    func parseJsonData(data:NSData) ->[Loan] {
+        
+        var loans = [Loan]()
+        
+        var jsonResult:[String:AnyObject]!
+        
+        do {
+            jsonResult = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! [String:AnyObject]
+            //print(jsonResult)
+        }
+        catch {
+            print("json:error\(error)")
+        }
+        
+        let jsonLoans = jsonResult["data"] as! [AnyObject]
+        for jsonLoan in jsonLoans{
+            
+            let loan = Loan()
+            
+            let user = jsonLoan["user"] as! [String:AnyObject]
+            loan.user_name = user["username"] as! String
+            loan.user_profile_picture = user["profile_picture"] as! String
+            
+            let images = jsonLoan["images"] as! [String:[String: AnyObject]]
+            loan.image = images["standard_resolution"]!["url"] as! String
+            
+            if let like = jsonLoan["likes"] as? [String:AnyObject] {
+            
+                loan.like = like["count"] as! Int
+            
+            }
+            
+            if let comment = jsonLoan["comments"] as? [String:AnyObject] {
+            
+                //loan.comment = comment["data"] as! String
+            
+            }
+            
+            loans.append(loan)
+        }
+        
+        return loans
+        
+    }
 
 
 
