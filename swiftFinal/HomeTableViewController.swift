@@ -53,9 +53,42 @@ class HomeTableViewController: UITableViewController {
             ]
         ]
     ]
+    
+    let  url_to_request = "https://api.instagram.com/v1/media/popular?client_id=642176ece1e7445e99244cec26f4de1f";
+    
+    var data_array:[[String:AnyObject]] = []
+    
+    func dataRequest(){
+        
+        let request = NSURLRequest(URL: NSURL(string: url_to_request)!)
+        let urlSession = NSURLSession.sharedSession()
+        let task = urlSession.dataTaskWithRequest(
+            request,
+            completionHandler: { (data, response, error) -> Void in
+                if error != nil{
+                    print(error!.localizedDescription)
+                    return
+                }
+                
+                do{
+                    let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String:AnyObject]
+                    print(jsonResult)
+                }catch{
+                    print("json:error\(error)")
+                }
+            }
+        )
+        
+        task.resume()
+    }
+    
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dataRequest()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
