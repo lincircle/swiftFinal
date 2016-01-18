@@ -70,23 +70,18 @@ class HomeTableViewController: UITableViewController {
                     return
                 }
                 
-                let json_objs = self.parseJsonData(data!)
+                self.parseJsonData(data!)
+                
+                
+                self.tableView.reloadData() //資料一開始載入只在記憶體，需要此動作才可以
 
-                for obj in json_objs {
-                
-                    obj.description()
-                    
-                }
-                
             }
         )
         
         task.resume()
     }
     
-    func parseJsonData(data:NSData) ->[Loan] {
-        
-        var loans = [Loan]()
+    func parseJsonData(data:NSData) {
         
         var jsonResult:[String:AnyObject]!
         
@@ -116,16 +111,26 @@ class HomeTableViewController: UITableViewController {
             
             }
             
-            if let comment = jsonLoan["comments"] as? [String:AnyObject] {
+            let comments = jsonLoan["comments"] as! [String:AnyObject]
+            let commentsdata = comments["data"] as! [[String:AnyObject]]
             
-                //loan.comment = comment["data"] as! String
-            
+            for commentdata in commentsdata{
+                
+                let comment = Comment()
+                
+                comment.text = commentdata["text"] as! String
+                
+                let from = commentdata["from"] as! [String:AnyObject]
+                comment.people = from["username"] as! String
+                
+                loan.comments.append(comment)
+                
             }
             
-            loans.append(loan)
-        }
+            
+            self.loans.append(loan)
         
-        return loans
+        }
         
     }
 
@@ -152,20 +157,13 @@ class HomeTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return self.data.count
+        return self.loans.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if (data[section]["type"] as? String) == "ad" {
-            
-            return 1
-            
-        }
         
-        let content = self.data[section]["content"] as! [String: AnyObject]
-        let comment = content["comment"] as! [[String: String]]
-        return 4 + comment.count
+        return 4 + loans[section].comments.count
         
     }
 
@@ -190,24 +188,18 @@ class HomeTableViewController: UITableViewController {
         
         
         var cell = UITableViewCell()
-        
-        if (data[indexPath.section]["type"] as? String) == "ad" {
-        
-            cell.textLabel?.text = "廣告"
+    
             
-            return cell
+        let content = self.loans[indexPath.section]
             
-        }
-        else {
-            
-            let content = self.data[indexPath.section]["content"] as! [String: AnyObject]
         switch indexPath.row {
         
         case 0:
         
             let user_cell = tableView.dequeueReusableCellWithIdentifier("usercell", forIndexPath: indexPath) as! UserTableViewCell
           
-            user_cell.userId.text = content["userid"] as? String
+            user_cell.userId.text = content.user_name
+            
             
             cell = user_cell
         
@@ -216,7 +208,10 @@ class HomeTableViewController: UITableViewController {
             
             let img_cell = tableView.dequeueReusableCellWithIdentifier("imgcell", forIndexPath: indexPath) as! ImgTableViewCell
             
-            img_cell.sharePic.image = UIImage(named: content["userimg"] as! String)
+            img_cell.sharePic.image = UIImage(data: NSData(contentsOfURL: NSURL(string: content.image)!)!)
+            
+            //img_cell.sharePic.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "https://scontent.cdninstagram.com/hphotos-xpa1/t51.2885-15/s640x640/sh0.08/e35/12501935_1560383174253179_1940524105_n.jpg")!)!)
+            
             
             cell = img_cell
             
@@ -230,7 +225,7 @@ class HomeTableViewController: UITableViewController {
             
             btn_cell.btn_comment.addTarget(self, action: Selector("goComment:"), forControlEvents: .TouchUpInside)
             
-            btn_cell.btn_comment.tag = data[indexPath.section]["id"] as! Int
+            //btn_cell.btn_comment.tag = data[indexPath.section]["id"] as! Int
             
             cell = btn_cell
         
@@ -239,28 +234,27 @@ class HomeTableViewController: UITableViewController {
             
             let like_cell = tableView.dequeueReusableCellWithIdentifier("likecell", forIndexPath: indexPath) as! LikeTableViewCell
             
-            like_cell.like_people.text = content["likename"] as? String
+            like_cell.like_people.text = String(content.like)
             
             cell = like_cell
         
             
         default:
             
-            let comment = content["comment"] as! [[String: String]]
             
             let comment_cell = tableView.dequeueReusableCellWithIdentifier("commentcell", forIndexPath: indexPath) as! CommentTableViewCell
             
             let index = indexPath.row - 4
             
-            comment_cell.com_user.setTitle(comment[index]["fanid"], forState: .Normal)
-            comment_cell.com_word.text = comment[index]["fanword"]
+            comment_cell.com_user.setTitle(content.comments[index].people, forState: .Normal)
+            comment_cell.com_word.text = content.comments[index].text
             
             
             cell = comment_cell
         
         
         }
-        }
+        
 
         return cell
     }

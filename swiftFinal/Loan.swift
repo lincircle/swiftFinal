@@ -18,20 +18,6 @@ class Loan {
     
     var like:Int = 0
     
-    var comment:String = ""
-    
-    func description() {
-    
-        print("user_name: \(self.user_name)")
+    var comments:[Comment] = []
         
-        print("user_profile_picture: \(self.user_profile_picture)")
-        
-        print("image: \(self.image)")
-        
-        print("like: \(self.like)")
-        
-        print("comment: \(self.comment)")
-        
-    }
-    
 }
